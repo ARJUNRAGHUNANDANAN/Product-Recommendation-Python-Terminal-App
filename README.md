@@ -9,7 +9,8 @@
 | Set Up Github Repository | Done |
 | Brainstorm Ideas into an Introduction File | Done |
 | Gather Inventory Data for Recommendation | Done |
-| Write Code | To Be Done |
+| Set Up Inventory | Done |
+| Write Main Recommender Code | To Be Done |
 | Refactor | To Be Done |
 | Tidy Up Github Repo | To Be Done |
 | Write a Post About It | To Be Done |
@@ -58,7 +59,11 @@ The downloaded CSV is inside ```raw_data/``` by the name ```laptops.csv``` folde
 
 **CSV to SQLite Conversion:**
 
-The raw CSV data has been converted into a SQLite database for efficient querying and filtering. This should improves the performance and scalability of the recommendation script. I created both a normalized DB version and a denormalized DB version. I may only use one for now. 
+The raw CSV data has been converted into a SQLite database for efficient querying and filtering. This should help with performance and querying options of the recommendation script. I created both a normalized DB version and a denormalized DB version. I may only use one for now. 
+
+To Get Denormalized DB, run `CSVtoSQLiteDB.py`. This creates `inventory.sqlite` in `inventory/`
+
+To Get Normalized DB, run `CSVtoNormalizedSQLiteDB.py`. This creates `normalized_inventory.sqlite` in `inventory_normalized/`
 
 | Before Conversion | After Conversion |
 |---|---|
