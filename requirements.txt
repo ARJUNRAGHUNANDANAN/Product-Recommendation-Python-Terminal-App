@@ -1,0 +1,3 @@
+# Run 'pip install -r requirements.txt'. SQLite3 generally comes pre-intsalled with Python Standard Library. 
+pandas
+#sqlite3

@@ -1,0 +1,11 @@
+import sqlite3, pandas as pd
+df = pd.read_csv('raw_data/laptops.csv', encoding='ISO-8859-1')
+df.columns = df.columns.str.replace(' ', '_').str.replace('(', '').str.replace(')', '')
+df = df.dropna()
+conn = sqlite3.connect('inventory/inventory.sqlite')
+conn.execute("DROP TABLE IF EXISTS laptops")
+conn.execute('''CREATE TABLE laptops (Manufacturer TEXT, Model_Name TEXT, Category TEXT, Screen_Size TEXT, Screen TEXT, CPU TEXT, RAM TEXT, Storage TEXT, GPU TEXT, Operating_System TEXT, Operating_System_Version TEXT, Weight TEXT, Price_Euros REAL)''')
+df.to_sql('laptops', conn, if_exists='replace', index=False)
+conn.commit()
+conn.close()
+print("Done")
