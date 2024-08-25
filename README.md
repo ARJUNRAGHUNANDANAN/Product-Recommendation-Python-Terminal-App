@@ -61,7 +61,7 @@ The downloaded CSV is inside ```raw_data/``` by the name ```laptops.csv``` folde
 
 The raw CSV data has been converted into a SQLite database for efficient querying and filtering. This should help with performance and querying options of the recommendation script. I created both a normalized DB version and a denormalized DB version. I may only use one for now. 
 
-To Get Denormalized DB, run `CSVtoSQLiteDB.py`. This creates `inventory.sqlite` in `inventory/`
+To Get Denormalized DB, run `[OLD]CSVtoSQLiteDB.py`. This creates `inventory.sqlite` in `inventory/`
 
 To Get Normalized DB, run `CSVtoNormalizedSQLiteDB.py`. This creates `normalized_inventory.sqlite` in `inventory_normalized/`
 
