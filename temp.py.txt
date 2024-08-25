@@ -1,0 +1,97 @@
+-------------------------------------------------------------------------------
+def greet_user():
+    print("Welcome to the Laptop Recommender!")
+    print("This application will help you find the best laptop based on your preferences.\n")
+greet_user()
+
+# Expected Output
+# Welcome to the Laptop Recommender!
+# This application will help you find the best laptop based on your preferences.
+-------------------------------------------------------------------------------
+
+import sqlite3
+db_path = 'inventory_normalized/normalized_inventory.sqlite'
+
+def query_table( query, params=None):
+    if params is None:
+        params = ()
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(query, params)
+        return cursor.fetchall()
+# -------------------------------------------------------------------------------
+
+manufacturers = [item[0] for item in query_table("SELECT DISTINCT manufacturers.name FROM manufacturers")]
+operating_systems = [item[0] for item in query_table("SELECT DISTINCT operating_systems.name FROM operating_systems")]
+ram_sizes = [item[0] for item in query_table("SELECT DISTINCT laptops.ram FROM laptops")]
+storage_sizes = [item[0] for item in query_table("SELECT DISTINCT laptops.storage FROM laptops")]
+min_max_price = query_table("SELECT MIN(price_euros), MAX(price_euros) FROM laptops")[0]
+min_price = round(float(min_max_price[0]))
+max_price = round(float(min_max_price[1]))
+print(manufacturers)
+print(operating_systems)
+print(categories)
+print(ram_sizes)
+print(storage_sizes)
+print(min_price)
+print(max_price)
+# Expected Output
+#['Acer', 'Apple', 'Asus', 'Dell', 'Lenovo', 'HP', 'Chuwi', 'MSI', 'Microsoft', 'Toshiba', 'Huawei', 'Vero', 'Razer', 'Mediacom', 'Fujitsu', 'Samsung', 'LG', 'Xiaomi']
+#['Mac OS', 'Windows']
+#[('Notebook',), ('Ultrabook',), ('Netbook',), ('Gaming',), ('2 in 1 Convertible',), ('Workstation',)]
+#['4GB', '16GB', '8GB', '2GB', '12GB', '6GB', '32GB', '24GB', '64GB']
+#['500GB HDD', '256GB Flash Storage', '512GB SSD', '256GB SSD', '128GB SSD', '32GB Flash Storage', '128GB SSD +  1TB HDD', '1TB HDD', '128GB Flash Storage', '256GB SSD +  256GB SSD', '64GB Flash Storage', '256GB SSD +  1TB HDD', '256GB SSD +  2TB HDD', '32GB SSD', '64GB SSD', '1TB Hybrid', '2TB HDD', '512GB SSD +  1TB HDD', '1TB SSD', '256GB SSD +  500GB HDD', '128GB SSD +  2TB HDD', '512GB SSD +  512GB SSD', '512GB SSD +  256GB SSD', '512GB SSD +  2TB HDD', '64GB Flash Storage +  1TB HDD', '1GB SSD', '1TB HDD +  1TB HDD', '32GB HDD', '1TB SSD +  1TB HDD', '512GB Flash Storage', '128GB HDD', '240GB SSD', '8GB SSD', '508GB Hybrid', '512GB SSD +  1TB Hybrid', '256GB SSD +  1TB Hybrid']
+#192
+#6099
+# -------------------------------------------------------------------------------
+query = '''
+        SELECT manufacturers.name, COUNT(laptops.id) AS total_laptops
+        FROM laptops
+        JOIN manufacturers ON laptops.manufacturer_id = manufacturers.id
+        GROUP BY manufacturers.name
+        '''
+result = query_table(query)
+print("\nAvailable Laptops in Inventory: \n ")
+for manufacturer, total in result:
+    print(f"{manufacturer}: {total} models available")
+print("-"*30)
+print("\nAvailable Category Values in Inventory: \n ")
+print("distinct values from each category manufacturers operating_systems categories ram_sizes storage_sizes")
+print("Manufacturers : ", manufacturers)
+print("OS : ", operating_systems)
+print("Category : ", categories)
+print("Ram : ", ram_sizes)
+print("Storage : ", storage_sizes)
+print("Price Range", min_price, " - ", max_price)
+print("-"*30)
+
+# EXPECTED Output
+# Available Laptops in Inventory: 
+# Acer: 76 models available
+# Apple: 8 models available
+# Asus: 141 models available
+# Chuwi: 3 models available
+# Dell: 260 models available
+# Fujitsu: 3 models available
+# HP: 258 models available
+# Huawei: 2 models available
+# LG: 3 models available
+# Lenovo: 245 models available
+# MSI: 54 models available
+# Mediacom: 7 models available
+# Microsoft: 6 models available
+# Razer: 7 models available
+# Samsung: 7 models available
+# Toshiba: 48 models available
+# Vero: 4 models available
+# Xiaomi: 1 models available
+# ------------------------------
+# Available Category Values in Inventory: 
+# distinct values from each category manufacturers operating_systems categories ram_sizes storage_sizes
+# Manufacturers :  ['Acer', 'Apple', 'Asus', 'Dell', 'Lenovo', 'HP', 'Chuwi', 'MSI', 'Microsoft', 'Toshiba', 'Huawei', 'Vero', 'Razer', 'Mediacom', 'Fujitsu', 'Samsung', 'LG', 'Xiaomi']
+# OS :  ['Mac OS', 'Windows']
+# Category :  [('Notebook',), ('Ultrabook',), ('Netbook',), ('Gaming',), ('2 in 1 Convertible',), ('Workstation',)]
+# Ram :  ['4GB', '16GB', '8GB', '2GB', '12GB', '6GB', '32GB', '24GB', '64GB']
+# Storage :  ['500GB HDD', '256GB Flash Storage', '512GB SSD', '256GB SSD', '128GB SSD', '32GB Flash Storage', '128GB SSD +  1TB HDD', '1TB HDD', '128GB Flash Storage', '256GB SSD +  256GB SSD', '64GB Flash Storage', '256GB SSD +  1TB HDD', '256GB SSD +  2TB HDD', '32GB SSD', '64GB SSD', '1TB Hybrid', '2TB HDD', '512GB SSD +  1TB HDD', '1TB SSD', '256GB SSD +  500GB HDD', '128GB SSD +  2TB HDD', '512GB SSD +  512GB SSD', '512GB SSD +  256GB SSD', '512GB SSD +  2TB HDD', '64GB Flash Storage +  1TB HDD', '1GB SSD', '1TB HDD +  1TB HDD', '32GB HDD', '1TB SSD +  1TB HDD', '512GB Flash Storage', '128GB HDD', '240GB SSD', '8GB SSD', '508GB Hybrid', '512GB SSD +  1TB Hybrid', '256GB SSD +  1TB Hybrid']
+# Price Range 192  -  6099
+# ------------------------------
