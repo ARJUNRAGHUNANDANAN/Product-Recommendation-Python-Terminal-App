@@ -38,12 +38,8 @@
 
 ### Tech Stack
 ``` 
-Python
+Python, SQLite3 
 ```
-
-### Contributing:
-Feel free to contribute to this project by submitting pull requests or raising issues.
-Use code with caution.
 
 ###  PHASE 1 : Getting and Cleaning Inventory Data for Use. 
 
@@ -71,18 +67,127 @@ To Get Normalized DB, run `CSVtoNormalizedSQLiteDB.py`. This creates `normalized
 
 ### PHASE 3 : Program Workflow Design [Expected]
 
-| Task | Status |
-|---|---|
-| LaptopRecommender | 
-| - __init__() | Initialize DB checks, data loading etc |
-| - greet_user() | Greets the user | 
-| - query_table() | An Abstraction to perform SQL Connections for Query | 
-| - show_inventory_summary() |  Show an initial summary of inventory |
-| - get_user_budget() | Asks the user for their budget  |
-| - get_user_use_case() | Asks the user for their preferred laptop use case. |
-| - get_user_preferences() | Prompts for details like preferred manufacturer, operating system, RAM, etc. |
-| - filter_laptops() | Returns a list of matching laptops |
-| - display_lists() | Displays the list of filtered laptops maybe in a table |
-| - display_laptop_information() | Provides detailed information about the selected laptop |
-| - run() | Main method to run the CLI |
+| Task | Desciption| Status |
+|---|---|---|
+| LaptopRecommender | Class Definition | ✅ | 
+| - __init__() | Initialize DB checks, data loading etc | ✅ | 
+| - greet_user() | Greets the user |  ✅ | 
+| - query_table() | An Abstraction to perform SQL Connections for Query |  ✅ | 
+| - show_inventory_summary() |  Show an initial summary of inventory | ✅ | 
+| - get_user_budget() | Asks the user for their budget  | ✅ | 
+| - get_user_use_case() | Asks the user for their preferred laptop use case. | ✅ | 
+| - get_user_preferences() | Prompts for details like preferred manufacturer, operating system, etc. | ✅ | 
+| - filter_laptops() | Returns a list of matching laptops | -Minimal-  | 
+| - display_lists() | Displays the list of filtered laptops maybe in a table | -Minimal- | 
+| - display_laptop_information() | Provides detailed information about the selected laptop | -Minimal- | 
+| - run() | Main method to run the CLI | ✅ | 
 
+A Sample Program Run
+```
+Product-Recommendation-Python-Terminal-App$ python recommender.py 
+Welcome to the Laptop Recommender!
+This application will help you find the best laptop based on your preferences.
+
+Available Laptops in Inventory: 
+Acer: 76 models available
+Apple: 8 models available
+Asus: 141 models available
+Chuwi: 3 models available
+Dell: 260 models available
+Fujitsu: 3 models available
+HP: 258 models available
+Huawei: 2 models available
+LG: 3 models available
+Lenovo: 245 models available
+MSI: 54 models available
+Mediacom: 7 models available
+Microsoft: 6 models available
+Razer: 7 models available
+Samsung: 7 models available
+Toshiba: 48 models available
+Vero: 4 models available
+Xiaomi: 1 models available
+------------------------------
+
+Available Category Values in Inventory: 
+ 
+Manufacturers :  ['Acer', 'Apple', 'Asus', 'Dell', 'Lenovo', 'HP', 'Chuwi', 'MSI', 'Microsoft', 'Toshiba', 'Huawei', 'Vero', 'Razer', 'Mediacom', 'Fujitsu', 'Samsung', 'LG', 'Xiaomi']
+OS :  ['Mac OS', 'Windows']
+Category :  ['Notebook', 'Ultrabook', 'Netbook', 'Gaming', '2 in 1 Convertible', 'Workstation']
+RAM Size :  ['4GB', '16GB', '8GB', '2GB', '12GB', '6GB', '32GB', '24GB', '64GB']
+Price Range 192  -  6099
+------------------------------
+Please enter your budget (in Euros). Available range: 192 - 6099 Euros: 3000
+Select Your Preferred Laptop Use Case (or enter 0 for No Preference):
+1. Notebook
+2. Ultrabook
+3. Netbook
+4. Gaming
+5. 2 in 1 Convertible
+6. Workstation
+0. No Preference
+Enter the number of your choice: 4
+Select Your Preferred Manufacturer (or enter 0 for No Preference):
+1. Acer
+2. Apple
+3. Asus
+4. Dell
+5. Lenovo
+6. HP
+7. Chuwi
+8. MSI
+9. Microsoft
+10. Toshiba
+11. Huawei
+12. Vero
+13. Razer
+14. Mediacom
+15. Fujitsu
+16. Samsung
+17. LG
+18. Xiaomi
+0. No Preference
+Enter the number of your choice: 0
+Select Your Preferred Operating System (or enter 0 for No Preference):
+1. Mac OS
+2. Windows
+0. No Preference
+Enter the number of your choice: 2
+
+Available Laptops:
+ID: 94, Model: GS63VR 7RG, Price: 2241.5 Euros
+ID: 107, Model: FX753VD-GC086T (i5-7300HQ/8GB/1TB, Price: 938.0 Euros
+ID: 116, Model: GE72MVR 7RG, Price: 2029.0 Euros
+ID: 118, Model: Inspiron 5577, Price: 1249.26 Euros
+ID: 1096, Model: GE62 Apache, Price: 1229.0 Euros
+------------------------------
+Are you satisfied with the options? (Yes/No): No
+
+Here are some other laptops you might consider:
+
+Available Laptops:
+ID: 9, Model: Legion Y520-15IKBN, Price: 999.0 Euros
+ID: 1096, Model: GE62 Apache, Price: 1229.0 Euros
+---etc----
+Enter the ID of the laptop you want more details on, or 0 to skip: 966
+
+Laptop Details:
+Manufacturer: Asus
+Model Name: Rog GL552VW-CN470T
+Category: Gaming
+Screen Size: 15.6"
+Screen: IPS Panel Full HD 1920x1080
+CPU: Intel Core i7 6700HQ 2.6GHz
+RAM: 16GB
+Storage: 128GB SSD +  1TB HDD
+GPU: Nvidia GeForce GTX 960M
+Operating System: Windows
+Weight: 2.59kg
+Price: 1339.0 Euros
+```
+
+This is just a simple project to practice basic CLI programs hence may not be improved further for now. 
+
+### Contributing:
+Feel free to contribute to this project / use the in a part of your program etc if neeeded. 
+Use code with caution.
