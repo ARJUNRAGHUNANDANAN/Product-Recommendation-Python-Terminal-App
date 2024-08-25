@@ -1,10 +1,16 @@
-import sqlite3, pandas as pd
+import sqlite3
+import pandas as pd
 
+# Load and preprocess the CSV file
 df = pd.read_csv('raw_data/laptops.csv', encoding='ISO-8859-1')
 df.columns = df.columns.str.replace(' ', '_').str.replace('(', '').str.replace(')', '')
 df = df.dropna()
 
-conn = sqlite3.connect('/inventory_normalized/normalized_inventory.sqlite')
+# Convert price to numeric format
+df['Price_Euros'] = df['Price_Euros'].str.replace(',', '.').astype(float)
+
+# Connect to SQLite database
+conn = sqlite3.connect('inventory_normalized/normalized_inventory.sqlite')
 cursor = conn.cursor()
 
 # Drop existing tables if they exist
@@ -47,14 +53,17 @@ cursor.execute('''CREATE TABLE laptops (
     FOREIGN KEY (operating_system_id) REFERENCES operating_systems(id)
 )''')
 
-# Populate  tables
+# Populate tables
 manufacturers = pd.DataFrame(df['Manufacturer'].unique(), columns=['name'])
 manufacturers.to_sql('manufacturers', conn, if_exists='append', index=False)
+
 operating_systems = df[['Operating_System', 'Operating_System_Version']].drop_duplicates().rename(
     columns={'Operating_System': 'name', 'Operating_System_Version': 'version'})
 operating_systems.to_sql('operating_systems', conn, if_exists='append', index=False)
+
 categories = pd.DataFrame(df['Category'].unique(), columns=['name'])
 categories.to_sql('categories', conn, if_exists='append', index=False)
+
 for _, row in df.iterrows():
     manufacturer_id = cursor.execute("SELECT id FROM manufacturers WHERE name = ?", (row['Manufacturer'],)).fetchone()[0]
     category_id = cursor.execute("SELECT id FROM categories WHERE name = ?", (row['Category'],)).fetchone()[0]
