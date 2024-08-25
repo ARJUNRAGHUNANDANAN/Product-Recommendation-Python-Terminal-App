@@ -69,7 +69,7 @@ To Get Normalized DB, run `CSVtoNormalizedSQLiteDB.py`. This creates `normalized
 |---|---|
 | ![Image of CSV file](media/CSVBeforeProcessing.png) | ![Image of SQLite database](media/CSVtoSQLiteDB.jpg) |
 
-## PHASE 3 : Program Workflow Design [Expected]
+### PHASE 3 : Program Workflow Design [Expected]
 
 | Task | Status |
 |---|---|
@@ -85,7 +85,4 @@ To Get Normalized DB, run `CSVtoNormalizedSQLiteDB.py`. This creates `normalized
 | - display_lists() | Displays the list of filtered laptops maybe in a table |
 | - display_laptop_information() | Provides detailed information about the selected laptop |
 | - run() | Main method to run the CLI |
-
-
-
 
