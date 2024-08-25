@@ -10,7 +10,7 @@
 | Brainstorm Ideas into an Introduction File | Done |
 | Gather Inventory Data for Recommendation | Done |
 | Set Up Inventory | Done |
-| Write Main Recommender Code | To Be Done |
+| Write Main Recommender Code | Done |
 | Refactor | To Be Done |
 | Tidy Up Github Repo | To Be Done |
 | Write a Post About It | To Be Done |
