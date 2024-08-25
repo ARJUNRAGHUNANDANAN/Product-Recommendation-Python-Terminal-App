@@ -45,7 +45,7 @@ Python
 Feel free to contribute to this project by submitting pull requests or raising issues.
 Use code with caution.
 
-### Getting and Cleaning Inventory Data for Use. 
+###  PHASE 1 : Getting and Cleaning Inventory Data for Use. 
 
 **Laptop Inventory Data**
 
@@ -57,7 +57,7 @@ While this dataset is from 5 Years ago, having a structured data like the above 
 
 The downloaded CSV is inside ```raw_data/``` by the name ```laptops.csv``` folder
 
-**CSV to SQLite Conversion:**
+###  PHASE 2 : CSV to SQLite Conversion:
 
 The raw CSV data has been converted into a SQLite database for efficient querying and filtering. This should help with performance and querying options of the recommendation script. I created both a normalized DB version and a denormalized DB version. I may only use one for now. 
 
@@ -68,6 +68,23 @@ To Get Normalized DB, run `CSVtoNormalizedSQLiteDB.py`. This creates `normalized
 | Before Conversion | After Conversion |
 |---|---|
 | ![Image of CSV file](media/CSVBeforeProcessing.png) | ![Image of SQLite database](media/CSVtoSQLiteDB.jpg) |
+
+## PHASE 3 : Program Workflow Design [Expected]
+
+| Task | Status |
+|---|---|
+| LaptopRecommender | 
+| - __init__() | Initialize DB checks, data loading etc |
+| - greet_user() | Greets the user | 
+| - query_table() | An Abstraction to perform SQL Connections for Query | 
+| - show_inventory_summary() |  Show an initial summary of inventory |
+| - get_user_budget() | Asks the user for their budget  |
+| - get_user_use_case() | Asks the user for their preferred laptop use case. |
+| - get_user_preferences() | Prompts for details like preferred manufacturer, operating system, RAM, etc. |
+| - filter_laptops() | Returns a list of matching laptops |
+| - display_lists() | Displays the list of filtered laptops maybe in a table |
+| - display_laptop_information() | Provides detailed information about the selected laptop |
+| - run() | Main method to run the CLI |
 
 
 
