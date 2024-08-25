@@ -11,9 +11,9 @@
 | Gather Inventory Data for Recommendation | Done |
 | Set Up Inventory | Done |
 | Write Main Recommender Code | Done |
-| Refactor | To Be Done |
-| Tidy Up Github Repo | To Be Done |
-| Write a Post About It | To Be Done |
+| Refactor | Done |
+| Tidy Up Github Repo | Done |
+| Write a Post About It | Skipped |
 
 ## Getting Started : Once Completed
 1. Clone this repository.
